@@ -1,53 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script type="text/javascript">
-      document.write(
-        '<link rel="stylesheet" href="css/main.css?' + Math.random() + '">'
-      );
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Condensed|Ubuntu+Mono&display=swap"
-      rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" href="css/main.css" /> -->
-    <title>Loading Screen | By Exsite</title>
-  </head>
-  <body>
-    <div class="background"></div>
-    <div class="overhaul"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hmcd_box loading</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&amp;display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Chivo', sans-serif;
+            font-weight: 300; 
+            position: relative;
+        }
 
-    <nav>
-      <div id="announcement"></div>
-      <span id="map">You're playing on </span>
-      <span id="steamid"></span>
-    </nav>
+        .container {
+            position: relative;
+        }
 
-    <div id="debug"></div>
+        #loading {
+            position: absolute;
+            top: 50%;
+            margin: -200px 8.5%;
+            height: 400px;
+            width: 83%;
+            border-bottom: ridge rgba(0,0,0, 0.35);
+            opacity: 0; 
+            animation: fadeIn 2s forwards; 
+            animation-delay: 3s; 
+        }
 
-    <main>
-      <div class="title">
-        <h2>Welcome to,</h2>
-        <h1 id="title"></h1>
-        <div id="history"></div>
-      </div>
-      <div class="under-nav"></div>
-      <div class="loading-box"></div>
-    </main>
+        #car {
+            width: 64px;
+            height: 64px;
+            position: absolute;
+            left: 1%;
+            bottom: 0;
+            margin: -35px;
+        }
 
-    <script src="js/lib/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-      document.write(
-        '<script src="js/config.js?' + Math.random() + '"><\/script>'
-      );
-      document.write(
-        '<script src="js/main.js?' + Math.random() + '"><\/script>'
-      );
-    </script>
-    <!-- <script src="config.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
-  </body>
+        #city {
+            width: 96px;
+            height: 96px;
+            position: absolute;
+            right: 1%;
+            bottom: 0;
+        }
+
+        #hint {
+            position: absolute; 
+            bottom: 0px; 
+            left: 0px;
+            margin: auto;
+            padding-top: 0px;
+            text-align: center;
+            color: #EEEEEE;
+            font-family: blogger-sans;
+            font-size: 0pt;
+            max-width: 800px;
+            opacity: 0;
+        }
+
+        #hint2 {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            color: #EEEEEE;
+            font-family: blogger-sans;
+            font-size: 0pt;
+            margin: 0;
+            animation-name: softblink;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes softblink {
+            0% { opacity: 1 }
+            50% { opacity: 0.35 }
+            90% { opacity: 1 }
+        }
+
+        #hint.fade {
+            opacity: 0;
+        }
+
+        .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 10px solid #E3E3E3; 
+            border-radius: 50%;
+            background-color: #385cbc;
+            animation: circleAnimation 2s forwards;
+            animation-delay: 3s; 
+        }
+
+        .text-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #385cbc;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            font-size: 78px;
+            animation: slideOut 2s forwards;
+            animation-delay: 3s; 
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes circleAnimation {
+            0% {
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                transform: translate(45%, -50%);
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                transform: translate(-50%, -50%);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-80%, -50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes infade {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes rot {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes rot {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #gif {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 800px; 
+            height: auto;
+        }
+
+    </style>
+</head>
+<body bgcolor="#000000">
+    <p id="hint"></p>
+    <p id="hint2"></p>
+
+    <div id="loading">
+        <img src="load.png" id="car">
+    </div>
+
+    <img src="gif.gif" id="gif" alt="ti sosalka">
+</body>
 </html>
